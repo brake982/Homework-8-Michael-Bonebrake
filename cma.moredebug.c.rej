@@ -1,0 +1,19 @@
+diff a/cma.moredebug.c b/cma.moredebug.c	(rejected hunks)
+@@ -43,7 +44,7 @@
+ static void class_printList(MNode list) {
+   if (!list)
+     return;
+-  printf("Node %p, %ld\n",list,list->size);
++  printf("Node %p, %ud\n",list,list->size);
+   class_printList(list->next);
+ }
+ 
+@@ -168,7 +174,7 @@
+   class_printList(class_nouse);
+ 
+   printf("Counters:\n");
+-#define DUMPC(x) printf(" %10s : %d\n",#x,class_counters.x)
++#define DUMPC(x) printf(" %10s : %ld\n",#x,class_counters.x)
+   DUMPC(malloc);
+   DUMPC(calloc);
+   DUMPC(realloc);
