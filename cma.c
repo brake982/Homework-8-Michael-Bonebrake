@@ -3,11 +3,10 @@
 #include <string.h>
 #include <limits.h>
 
-#include "debug.h"
-
 #include "cma.h"
 
 #define ITEMNOTFOUND ((void *)-1)
+#define NXT(e) ((void*)e+e->size+sizeof(struct MemNode)) 
 
 static void *class_membase=NULL;
 static void *class_limit=NULL;
@@ -127,9 +126,20 @@ void *class_malloc(size_t size) {
   }
 }
 
-//attempt to find adjacent unused nodes and collapse them.
 static void class_garbage() {
-	//Not Implemented
+    MNode here, there;
+    int counter = 0;
+    here = class_nouse;
+    while (!here){
+        there = here->next;
+        if ( there == here->next) {
+            here->next = there->next
+            NXT(here)
+            counter++;
+            return;
+        }
+        here = here->next;
+    }
 
 }
 
@@ -179,4 +189,5 @@ void class_stats() {
   DUMPC(nomem);
 #undef DUMPC
 }
+
 
